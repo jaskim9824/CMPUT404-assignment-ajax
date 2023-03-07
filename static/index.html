@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width" />
     <meta name="license" content="
         Copyright 2013 Abram Hindle
+        Copyright 2023 Jason Kim
         
         Licensed under the Apache License, Version 2.0 (the "License");
         you may not use this file except in compliance with the License.
@@ -146,7 +147,7 @@ function addEntity(entity, data) {
     world[entity] = data;
     // drawNextFrame(); // (but should we?)
     //XXX: Send a XHTML Request that updates the entity you just  modified!
-    sendJSONXMLHTTPRequest("http://127.0.0.1:5000/entity/"+entity, data, null);
+    sendJSONXMLHTTPRequest("http://"+location.host+"/entity/"+entity, data, null);
 
 }
 
@@ -284,7 +285,7 @@ function update() {
             }
         }
     };
-    getWorld.open("GET", "http://127.0.0.1:5000/world");
+    getWorld.open("GET", "http://"+location.host+"/world");
     getWorld.send();
     drawNextFrame();
     drawFrame();
