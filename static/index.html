@@ -145,10 +145,8 @@ function getPosition(e) {
 
 function addEntity(entity, data) {
     world[entity] = data;
-    // drawNextFrame(); // (but should we?)
     //XXX: Send a XHTML Request that updates the entity you just  modified!
     sendJSONXMLHTTPRequest("http://"+location.host+"/entity/"+entity, data, null);
-
 }
 
 var counter = 0;
@@ -278,6 +276,8 @@ function update() {
             try {
                 if (getWorld.status==200) {
                     world = JSON.parse(getWorld.responseText);
+                    drawNextFrame();
+                    drawFrame();
                 }
             } 
             catch(e) {
@@ -287,8 +287,7 @@ function update() {
     };
     getWorld.open("GET", "http://"+location.host+"/world");
     getWorld.send();
-    drawNextFrame();
-    drawFrame();
+
 }
 
 // 30 frames per second
