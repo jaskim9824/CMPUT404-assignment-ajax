@@ -27,10 +27,11 @@
     <canvas id="c" width="100%" height="100%" style="-webkit-tap-highlight-color: transparent;"></canvas> 
     <script>
 var canvas = document.getElementById('c');
-var host = window.location.host;
+var host = window.host;
 var context = canvas.getContext("2d");
 var W = canvas.width  = window.innerWidth-6;
 var H = canvas.height = window.innerHeight-50;
+var host = location.host;
 
 
 function sendJSONXMLHTTPRequest(url, objects, callback) {
@@ -146,7 +147,7 @@ function getPosition(e) {
 function addEntity(entity, data) {
     world[entity] = data;
     //XXX: Send a XHTML Request that updates the entity you just  modified!
-    sendJSONXMLHTTPRequest("http://"+location.host+"/entity/"+entity, data, null);
+    sendJSONXMLHTTPRequest("http://"+host+"/entity/"+entity, data, null);
 }
 
 var counter = 0;
@@ -255,15 +256,15 @@ mouse = (function() {
 // Add the application specific mouse listeners!
 //XXX: TODO Make these prettier!
 mouse.mousedowners.push(function(x,y,clicked,e) {
-    addEntityWithoutName({'x':x,'y':y,'colour':'blue', 'radius':10});
+    addEntityWithoutName({'x':x,'y':y,'colour':'white', 'radius':5});
 });
 
 mouse.mouseuppers.push(function(x,y,clicked,e) {
-    addEntityWithoutName({'x':x,'y':y,'colour':'red', 'radius':10});
+    addEntityWithoutName({'x':x,'y':y,'colour':'white', 'radius':5});
 });
 
 mouse.mousedraggers.push(function(x,y,clicked,e) {
-    addEntityWithoutName({'x':x,'y':y,'colour':'green',
+    addEntityWithoutName({'x':x,'y':y,'colour':'white',
                           'radius':5});
 });
 
@@ -285,7 +286,7 @@ function update() {
             }
         }
     };
-    getWorld.open("GET", "http://"+location.host+"/world");
+    getWorld.open("GET", "http://"+host+"/world");
     getWorld.send();
 
 }
