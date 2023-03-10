@@ -146,9 +146,9 @@ function addEntity(entity, data) {
     world[entity] = data;
     //XXX: Send a XHTML Request that updates the entity you just  modified!
     sendJSONXMLHTTPRequest("http://"+host+"/entity/"+entity, data, null);
+    drawNextFrame();
 }
 
-var counter = 0;
 function addEntityWithoutName(data) {
     //var name = "X"+Math.floor((Math.random()*100)+1);
     var name = "X"+(counter++)%100;
@@ -269,6 +269,7 @@ mouse.mousedraggers.push(function(x,y,clicked,e) {
 
 function update() {
     //XXX: TODO Get the world from the webservice using a XMLHTTPRequest
+    drawFrame();
     var getWorld = new XMLHttpRequest();
     getWorld.onreadystatechange = function () {
         if (getWorld.readyState==4) {

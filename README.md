@@ -17,4 +17,4 @@ index.html contains modifications from Jason Kim.
 Sources
 ========================
 
-https://www.w3schools.com/js/js_ajax_http.asp
+XMLHttpRequests: https://www.w3schools.com/js/js_ajax_http.asp
